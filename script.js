@@ -59,9 +59,7 @@ gridSizeSlider.addEventListener("input", event => {
 });
 
 gridSizeSlider.addEventListener("change", event => {
-    while (mainContainer.firstChild) {
-        mainContainer.removeChild(mainContainer.firstChild);
-    }
+    destroyCells();
     resetSettings();
     createCells(gridSize);
     setCellListeners(mainContainer.childNodes);
@@ -97,8 +95,16 @@ gridLinesButton.addEventListener("click", event => {
         } else {
             cell.style.border = "none";
         }
-    }); 
+    });
     isGridLinesOn = !isGridLinesOn;
+});
+
+const clearGridButton = document.querySelector(".clear-grid button");
+clearGridButton.addEventListener("click", event => {
+    destroyCells();
+    createCells(gridSize);
+    setCellListeners(mainContainer.childNodes);
+    mainContainer.style.backgroundColor = bgColor;
 });
 
 function createCells(dimension) {
@@ -113,6 +119,12 @@ function createCells(dimension) {
             
             mainContainer.appendChild(cell);
         }
+    }
+}
+
+function destroyCells() {
+    while (mainContainer.firstChild) {
+        mainContainer.removeChild(mainContainer.firstChild);
     }
 }
 
