@@ -5,19 +5,21 @@ const GRID_DIMENSION = 560;
 let gridSize = 16;
 
 let inkColor = "#000000";
-let bgColor = "#f4f4f4";
+let bgColor = "#ffffff";
+let gridLineColor = getComplementaryColor(bgColor);
 
-const mainContainer = document.querySelector("main");
+const mainContainer = document.querySelector("main div");
 mainContainer.style.width = `${GRID_DIMENSION}px`;
 mainContainer.style.height = `${GRID_DIMENSION}px`;
 mainContainer.style.backgroundColor = bgColor;
-
-createCells(gridSize);
 
 let isEraserOn = false;
 let erasedCells = []; // maintains a stack for erased cells
 
 let isRandomOn = false;
+let isGridLinesOn = true;
+
+createCells(gridSize);
 
 const inkColorPicker = document.querySelector("#ink-color-picker");
 const bgColorPicker = document.querySelector("#bg-color-picker");
@@ -32,6 +34,12 @@ inkColorPicker.addEventListener("change", event => {
 bgColorPicker.addEventListener("change", event => {
     bgColor = event.target.value;
     mainContainer.style.backgroundColor = bgColor;
+
+    mainContainer.childNodes.forEach(cell => {
+        if (isGridLinesOn) {
+            cell.style.border = `1px solid ${getComplementaryColor(bgColor)}`;
+        }
+    });
 
     erasedCells.forEach(cell => {
         cell.style.backgroundColor = bgColor;
@@ -80,6 +88,33 @@ const randomButton = document.querySelector(".random button");
 randomButton.addEventListener("click", event => {
     isRandomOn = !isRandomOn;
 });
+
+const gridLinesButton = document.querySelector(".grid-lines button");
+gridLinesButton.addEventListener("click", event => {
+    mainContainer.childNodes.forEach(cell => {
+        if (!isGridLinesOn) {
+            cell.style.border = `1px solid ${getComplementaryColor(bgColor)}`;
+        } else {
+            cell.style.border = "none";
+        }
+    }); 
+    isGridLinesOn = !isGridLinesOn;
+});
+
+function createCells(dimension) {
+    for (let i = 0; i < dimension; i ++) {
+        for (let j = 0; j < dimension; j ++) {
+            const cell = document.createElement("div");
+            if (isGridLinesOn) {
+                cell.style.border = `1px solid ${getComplementaryColor(bgColor)}`;
+            }
+            cell.style.width = `${GRID_DIMENSION / gridSize}px`;
+            cell.style.height = `${GRID_DIMENSION / gridSize}px`;
+            
+            mainContainer.appendChild(cell);
+        }
+    }
+}
 
 function setCellListeners(cells) {
     cells.forEach(cell => {
@@ -139,15 +174,10 @@ function generateRandomColor() {
     return `rgb(${red}, ${green}, ${blue})`;
 }
 
-function createCells(dimension) {
-    for (let i = 0; i < dimension; i ++) {
-        for (let j = 0; j < dimension; j ++) {
-            const cell = document.createElement("div");
-            cell.classList.add("cell");
-            cell.style.width = `${GRID_DIMENSION / gridSize}px`;
-            cell.style.height = `${GRID_DIMENSION / gridSize}px`;
-            
-            mainContainer.appendChild(cell);
-        }
-    }
+function getComplementaryColor(hexCode) {
+    const rChannel = 255 - Number("0x" + hexCode.slice(1, 3));
+    const gChannel = 255 - Number("0x" + hexCode.slice(3, 5));
+    const bChannel = 255 - Number("0x" + hexCode.slice(5));
+
+    return `#${rChannel.toString(16)}${gChannel.toString(16)}${bChannel.toString(16)}`;
 }

@@ -8,12 +8,12 @@
 
 main {
     margin: 20px;
-
-    display: flex;
-    flex-wrap: wrap;
+    padding: 20px;
+    background-color: grey;
+    width: fit-content;
 }
 
-.cell {
-    margin: 0;
-    border: 1px solid red;
+main div {
+    display: flex;
+    flex-wrap: wrap;
 }
