@@ -19,7 +19,3 @@ main {
     width: 20px;
     height: 20px;
 }
-
-.cell-hovered {
-    background-color: coral;
-}
