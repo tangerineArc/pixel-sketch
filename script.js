@@ -37,7 +37,7 @@ bgColorPicker.addEventListener("change", event => {
 
     mainContainer.childNodes.forEach(cell => {
         if (isGridLinesOn) {
-            cell.style.border = `1px solid ${getComplementaryColor(bgColor)}`;
+            cell.style.border = `1px dotted ${getComplementaryColor(bgColor)}`;
         }
     });
 
@@ -80,23 +80,51 @@ setCellListeners(mainContainer.childNodes);
 const eraserButton = document.querySelector(".eraser button");
 eraserButton.addEventListener("click", event => {
     isEraserOn = !isEraserOn;
+    if (isEraserOn) {
+        event.target.style.backgroundColor = "#ffffff";
+        event.target.style.color = "#000000";
+        event.target.style.fontWeight = "bold";
+    } else {
+        event.target.style.backgroundColor = "#464646";
+        event.target.style.color = "#ffffff";
+        event.target.style.fontWeight = "normal";
+    }
 });
 
 const randomButton = document.querySelector(".random button");
 randomButton.addEventListener("click", event => {
     isRandomOn = !isRandomOn;
+    if (isRandomOn) {
+        event.target.style.backgroundColor = "#ffffff";
+        event.target.style.color = "#000000";
+        event.target.style.fontWeight = "bold";
+    } else {
+        event.target.style.backgroundColor = "#464646";
+        event.target.style.color = "#ffffff";
+        event.target.style.fontWeight = "normal";
+    }
 });
 
 const gridLinesButton = document.querySelector(".grid-lines button");
 gridLinesButton.addEventListener("click", event => {
     mainContainer.childNodes.forEach(cell => {
         if (!isGridLinesOn) {
-            cell.style.border = `1px solid ${getComplementaryColor(bgColor)}`;
+            cell.style.border = `1px dotted ${getComplementaryColor(bgColor)}`;
         } else {
             cell.style.border = "none";
         }
     });
+
     isGridLinesOn = !isGridLinesOn;
+    if (isGridLinesOn) {
+        event.target.style.backgroundColor = "#ffffff";
+        event.target.style.color = "#000000";
+        event.target.style.fontWeight = "bold";
+    } else {
+        event.target.style.backgroundColor = "#464646";
+        event.target.style.color = "#ffffff";
+        event.target.style.fontWeight = "normal";
+    }
 });
 
 const clearGridButton = document.querySelector(".clear-grid button");
@@ -112,7 +140,7 @@ function createCells(dimension) {
         for (let j = 0; j < dimension; j ++) {
             const cell = document.createElement("div");
             if (isGridLinesOn) {
-                cell.style.border = `1px solid ${getComplementaryColor(bgColor)}`;
+                cell.style.border = `1px dotted ${getComplementaryColor(bgColor)}`;
             }
             cell.style.width = `${GRID_DIMENSION / gridSize}px`;
             cell.style.height = `${GRID_DIMENSION / gridSize}px`;
@@ -173,10 +201,7 @@ function resetSettings() {
     bgColorPicker.value = bgColor;
     mainContainer.style.backgroundColor = bgColor;
 
-    isEraserOn = false;
     erasedCells = []; // maintains a stack for erased cells
-    
-    isRandomOn = false;
 }
 
 function generateRandomColor() {

@@ -10,7 +10,7 @@
 }
 
 body {
-    background-color: #111111;
+    background-color: #141414;
 
     color: white;
 }
@@ -84,15 +84,15 @@ input[type="color"]::-webkit-color-swatch {
 .eraser button, .random button, .grid-lines button, .clear-grid button {
     font-family: "Kumbh Sans", sans-serif;
     font-size: 1em;
-    /* font-weight: bold; */
     color: #ffffff;
 
     width: 100%;
     padding: 0.8em 0;
-    /* border: 2px solid #ffffff; */
     border: none;
     border-radius: 5px;
     background-color: #464646;
+
+    cursor: pointer;
 }
 
 .grid-settings {
@@ -106,6 +106,13 @@ input[type="color"]::-webkit-color-swatch {
     accent-color: #ffffff;
 
     width: 100%;
+}
+
+.grid-lines button {
+    background-color: #ffffff;
+
+    color: #000000;
+    font-weight: bold;
 }
 
 #sketch-box {
