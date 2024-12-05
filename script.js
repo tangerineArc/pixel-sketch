@@ -6,6 +6,8 @@ let bgColor = "#ffffff";
 let isEraserOn = false;
 let erasedCells = []; // maintains a stack for erased cells
 
+let isRandomOn = false;
+
 const inkColorPicker = document.querySelector("#ink-color-picker");
 const bgColorPicker = document.querySelector("#bg-color-picker");
 
@@ -55,10 +57,13 @@ cells.forEach(cell => {
                     erasedCells.push(event.target);
                 }
             } else {
-                cell.style.backgroundColor = inkColor;
+                if (isRandomOn) {
+                    cell.style.backgroundColor = generateRandomColor();
+                } else {
+                    cell.style.backgroundColor = inkColor;
+                }
                 erasedCells = erasedCells.filter(item => item != event.target);
             }
-            console.log("draw", erasedCells, bgColor);
         }
     });
     cell.addEventListener("mousedown", event => {
@@ -68,10 +73,13 @@ cells.forEach(cell => {
                 erasedCells.push(event.target);
             }
         } else {
-            cell.style.backgroundColor = inkColor;
+            if (isRandomOn) {
+                cell.style.backgroundColor = generateRandomColor();
+            } else {
+                cell.style.backgroundColor = inkColor;
+            }
             erasedCells = erasedCells.filter(item => item != event.target);
         }
-        console.log("draw", erasedCells, bgColor);
     });
 });
 
@@ -79,3 +87,15 @@ const eraserButton = document.querySelector(".eraser button");
 eraserButton.addEventListener("click", event => {
     isEraserOn = !isEraserOn;
 });
+
+const randomButton = document.querySelector(".random button");
+randomButton.addEventListener("click", event => {
+    isRandomOn = !isRandomOn;
+});
+
+function generateRandomColor() {
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+    return `rgb(${red}, ${green}, ${blue})`;
+}
