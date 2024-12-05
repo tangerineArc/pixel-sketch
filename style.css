@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Micro+5&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap');
+
 *, *::before, *::after {
     box-sizing: border-box;
     padding: 0;
@@ -6,14 +9,114 @@
     user-select: none;
 }
 
-main {
-    margin: 20px;
-    padding: 20px;
-    background-color: grey;
-    width: fit-content;
+body {
+    background-color: #111111;
+
+    color: white;
 }
 
-main div {
+header {
+    padding: 2em 0.5em;
+
+    display: flex;
+    justify-content: center;
+}
+
+header h1 {
+    font-size: 5em;
+    font-family: "Micro 5", sans-serif;
+    color: #017365;
+}
+
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+
+    padding: 1em 0.5em;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+
+    background-color: #232323;
+    padding: 1em;
+    border-radius: 5px;
+
+    font-family: "Kumbh Sans", sans-serif;
+}
+
+.color-settings, .tool-settings, .grid-settings, .env-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+
+    background-color: #343434;
+    padding: 1em;
+    border-radius: 5px;
+}
+
+.ink-color, .bg-color {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+#ink-color-picker, #bg-color-picker {
+    border: none;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+}
+
+.eraser button, .random button, .grid-lines button, .clear-grid button {
+    font-family: "Kumbh Sans", sans-serif;
+    font-size: 1em;
+    /* font-weight: bold; */
+    color: #ffffff;
+
+    width: 100%;
+    padding: 0.8em 0;
+    /* border: 2px solid #ffffff; */
+    border: none;
+    border-radius: 5px;
+    background-color: #464646;
+}
+
+.grid-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+}
+
+#grid-size-slider {
+    accent-color: #ffffff;
+
+    width: 100%;
+}
+
+#sketch-box {
+    margin: 20px;
+    padding: 20px;
+    background-color: #343434;
+    width: fit-content;
+    border-radius: 5px;
+}
+
+#sketch-box div {
     display: flex;
     flex-wrap: wrap;
 }

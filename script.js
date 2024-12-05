@@ -8,7 +8,7 @@ let inkColor = "#000000";
 let bgColor = "#ffffff";
 let gridLineColor = getComplementaryColor(bgColor);
 
-const mainContainer = document.querySelector("main div");
+const mainContainer = document.querySelector("#sketch-box div");
 mainContainer.style.width = `${GRID_DIMENSION}px`;
 mainContainer.style.height = `${GRID_DIMENSION}px`;
 mainContainer.style.backgroundColor = bgColor;

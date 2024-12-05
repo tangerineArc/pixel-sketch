@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pixel Sketch</title>
 
     <link rel="stylesheet" href="./style.css">
     <script defer src="./script.js"></script>
@@ -12,43 +12,45 @@
 
 <body>
     <header>
-        <h1>Pixel Pad</h1>
+        <h1>Pixel Sketch</h1>
     </header>
-    <div class="settings">
-        <div class="color-settings">
-            <div class="ink-color">
-                <input type="color" name="" id="ink-color-picker">
-                <label for="ink-color-picker">Ink Color</label>
+    <div class="main-container">
+        <div class="settings">
+            <div class="color-settings">
+                <div class="ink-color">
+                    <input type="color" name="" id="ink-color-picker">
+                    <label for="ink-color-picker">Ink Color</label>
+                </div>
+                <div class="bg-color">
+                    <input type="color" id="bg-color-picker">
+                    <label for="bg-color-picker">Background Color</label>
+                </div>
             </div>
-            <div class="bg-color">
-                <input type="color" id="bg-color-picker">
-                <label for="bg-color-picker">Background Color</label>
+            <div class="tool-settings">
+                <div class="eraser">
+                    <button>Toggle Eraser</button>
+                </div>
+                <div class="random">
+                    <button>Toggle Random</button>
+                </div>
             </div>
-        </div>
-        <div class="tool-settings">
-            <div class="eraser">
-                <button>Toggle Eraser</button>
-            </div>
-            <div class="random">
-                <button>Toggle Random</button>
-            </div>
-        </div>
-        <div class="grid-settings">
-            <div class="grid-size">
+            <div class="grid-settings">
                 <input type="range" id="grid-size-slider" min="8" max="50">
                 <label for="grid-size-slider">
-                    Grid Size <span class="grid-size-value">16</span> x <span class="grid-size-value">16</span>
+                    <span class="grid-size-value">16</span> x <span class="grid-size-value">16</span> grid
                 </label>
             </div>
-            <div class="grid-lines">
-                <button>Toggle Grid Lines</button>
-            </div>
-            <div class="clear-grid">
-                <button>Clear Grid</button>
+            <div class="env-settings">
+                <div class="grid-lines">
+                    <button>Toggle Grid Lines</button>
+                </div>
+                <div class="clear-grid">
+                    <button>Clear Grid</button>
+                </div>
             </div>
         </div>
+        <div id="sketch-box"><div></div></div>
     </div>
-    <main><div></div></main>
 </body>
 
 </html>
